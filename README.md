@@ -1,70 +1,190 @@
-# Getting Started with Create React App
+# JustPlan ToDo Project 🧑🏻‍💻
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is my personal To-Do List project created using JavaScript, React, and Styled Components.
 
-## Available Scripts
+You can check today's date and add tasks by entering them, which activates the "Add" button to add them to the to-do list.
 
-In the project directory, you can run:
+The added tasks can be viewed with the total count, and you can also edit and delete them. Additionally, clicking on the task text allows you to toggle between Complete and incomplete states.
 
-### `npm start`
+Finally, users can easily manage their tasks using the "All", "Done", and "ToDo" buttons.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Utilizing Figma (Design Tool)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Creating layouts and designs
 
-### `npm test`
+2. Utilizing JavaScript
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Write code to display the current date.
+- Create initial data, save it to local storage, and retrieve it.
+- Receive parameters necessary for initial data reflection, to-do list addition, modification, deletion, etc., and distinguish them using if statements, updating them using spread operators, etc.
 
-### `npm run build`
+3. Utilizing React
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Design the content as components to manage and reuse components effectively.
+- Use Array.filter and Array.map to repeat components and output only the desired components through filter buttons.
+- Use useState and Props to update values needed for adding, deleting, modifying, etc., to-do lists.
+- Use useRef and useEffect to access input tags and give them focusing effects.
+- Apply CSS effects to className and disabled attributes using ternary operators.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+4. Utilizing Styled Components
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Use Styled Components to set Reset CSS and perform CSS and responsive work.
 
-### `npm run eject`
+## Preview of Completed Project
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Demo : https://justplan.netlify.app
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Tech Stack
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Complete the site using ![JavaScript](https://img.shields.io/badge/-JavaScript-%23F7DF1C?style=for-the-badge&logo=javascript&logoColor=000000&labelColor=%23FDF1C&color=%23FFCE5A) and ![React](https://img.shields.io/badge/-React-222222?style=for-the-badge&logo=react).
+- Manage ![CSS3](https://img.shields.io/badge/-CSS3-007ACC?style=for-the-badge&logo=css3) using Styled-Components.
+- Manage files using ![Git](https://img.shields.io/badge/-Git-F05032?style=for-the-badge&logo=git&logoColor=ffffff) and ![Github](https://img.shields.io/badge/-github-121013?style=for-the-badge&logo=github&logoColor=white).
+- Package code, files, images, CSS files, etc., through build.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Running and Finishing the Project
 
-## Learn More
+- Install React: `npx create-react-app title` || `create-react-app .(current folder)`
+- Install Styled-Components:  `npm install styled-components`
+- Create files for deployment environment: `npm run build`
+- Create a static file serving program: `npm install -g serve (accessible in all paths on the current computer)`
+- Serve the web application based on the build folder: `serve -s build`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## References for the Project
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Save and retrieve from local storage (https://studyingych.tistory.com/28)
+2. Setting up Styled Component Reset CSS (https://lakelouise.tistory.com/319)
 
-### Code Splitting
+## Learned from the Project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### JavaScript
 
-### Analyzing the Bundle Size
+1. Creating initial data and utilizing local storage.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+  const seedData = () => {
+    const seed = [
+      { id: "list1", name: "MovieDB Logo Opt", completed: true },
+      { id: "list2", name: "Assembling LEGO", completed: false },
+      { id: "list3", name: "VUE Study", completed: false },
+      { id: "list3", name: "Soccer Practice 8pm-9pm", completed: false },
+    ];
 
-### Making a Progressive Web App
+    setData(seed);
+  };
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  const setData = (seed) => {
+    localStorage.setItem("todoList", JSON.stringify(seed));
+  };
 
-### Advanced Configuration
+  if (!JSON.parse(localStorage.getItem("todoList"))) {
+    seedData();
+  }
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+2. Adding, toggling, modifying, and deleting initial data.
 
-### Deployment
+```
+  // Add
+  const addTask = (name) => {
+    const newTask = { id: `list-${new Date()}`, name, completed: false };
+    const newTasks = [...tasks, newTask];
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+    setData(newTasks);
+    setTasks(newTasks);
+  };
 
-### `npm run build` fails to minify
+  // Toggle
+  const toggleTaskCompleted = (id) => {
+    const toggleTask = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, completed: !task.completed };
+      }
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+      return task;
+    });
+
+    setData(toggleTask);
+    setTasks(toggleTask);
+  };
+
+  // Edit
+  const editTaskCompleted = (id, newName) => {
+    const editTask = tasks.map((task) => {
+      if (task.id === id) {
+        return { ...task, name: newName };
+      }
+
+      return task;
+    });
+
+    setData(editTask);
+    setTasks(editTask);
+  };
+
+  // Delete
+  const deleteTaskCompleted = (id) => {
+    const deleteTask = tasks.filter((task) => {
+      return task.id !== id;
+    });
+
+    setData(deleteTask);
+    setTasks(deleteTask);
+  };
+```
+
+### Styled-Component
+
+1. Writing "Reset CSS" in "GlobalStyles."
+
+```
+  // Reference : Import createGlobalStyle (insert into GlobalStyles.js)
+  import { createGlobalStyle } from "styled-components";
+
+  //  Reference: Import GlobalStyles (insert into index.js)
+  import GlobalStyles from "./styles/GlobalStyles";
+```
+
+2. Responsive code with Styled-Components.
+
+```
+  export const Wraaper = styled.div`
+    width: 500px;
+    height: 600px;
+
+    @media only screen and (max-width: 600px) {
+      width: 90%;
+    }
+  `;
+```
+
+### React
+
+1. Utilizing filter, map, Props.
+
+```
+  // filter data
+  const FilterMap = {
+    All : () => true,
+    Done :  (task) => task.completed,
+    ToDo : (task) => !task.completed
+  }
+
+  // taskList component with props for task list, toggle, edit, and delete, and filter list creation.
+  const tasksList = tasks.filter(FilterMap[filter]).map((task) => (
+    <TodoList
+      key={task.id}
+      task={task}
+      toggleTaskCompleted={toggleTaskCompleted}
+      editTaskCompleted={editTaskCompleted}
+      deleteTaskCompleted={deleteTaskCompleted}
+    />
+  ));
+```
+
+## What I got from this project
+
+As this was my first solo project, there were many areas where I felt inexperienced.
+I initially wanted to simplify the App.js file by putting functions related to toggling, editing, and deleting inside the TodoList component.
+However, as I was using setState to update the state, the code became longer, so I decided not to implement it.
+Later, I learned that it is better not to distribute the code that reflects the overall flow of the project into each component.
+This project gave me the opportunity to reconsider this aspect and think about it more deeply. 
